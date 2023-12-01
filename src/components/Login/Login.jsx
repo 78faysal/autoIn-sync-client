@@ -1,22 +1,50 @@
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+
+    const {signIn, googleSignIn} = useContext(AuthContext);
 
     const handleFormSubmit = e => {
         e.preventDefault();
 
-        // const form = e.target;
-        // const email = form.email.value;
-        // const password = form.password.value;
-        // const user = {email, password}
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const user = {email, password}
 
         // if(password.length < 6){
         //     toast.error('Password Should atleast 6 charecters')
         // }
 
-        // console.log(user);
+        // signIn user 
+        signIn(email, password)
+        .then(result => {
+            if(result.user){
+                toast.success('Logged In Successfully')
+            }
+        })
+        .catch(err => {
+            if(err.message === 'Firebase: Error (auth/invalid-credential).'){
+                toast.error('Wrong email or password')
+            }
+        })
     }
+
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+            console.log(result.user);
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+    }
+
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -45,7 +73,7 @@ const Login = () => {
                                 <p>Need to create Account? <Link to='/register' className="text-gray-700 ml-2">SignUp</Link></p>
                             </div>
                             <div>
-                                <button className="btn  w-full">Continue with Google</button>
+                                <button onClick={handleGoogleSignIn} className="btn w-full">Continue with Google</button>
                             </div>
 
                         </form>

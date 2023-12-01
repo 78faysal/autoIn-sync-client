@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext);
     
     const handleFormSubmit = e => {
         e.preventDefault();
@@ -24,7 +28,18 @@ const Register = () => {
             return toast.error('Please add special character')
         }
 
-        console.log(user);
+        //createuser
+        createUser(email, password)
+        .then(result => {
+            if(result.user){
+                toast.success('User Created Successfully')
+            }
+        })
+        .catch(err => {
+            if(err.message === 'Firebase: Error (auth/email-already-in-use).'){
+                toast.error("Can't create more account using one email")
+            }
+        })
     }
 
     return (
