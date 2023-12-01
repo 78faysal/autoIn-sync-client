@@ -1,15 +1,24 @@
 import { NavLink } from "react-router-dom";
 import { CiLight, CiDark } from "react-icons/ci";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
     const [dark, setDark] = useState(false);
 
-    if(dark){
+    const { user, logOut } = useContext(AuthContext);
+
+    if (dark) {
         document.querySelector('html').setAttribute('data-theme', 'dim');
     }
-    else{
+    else {
         document.querySelector('html').setAttribute('data-theme', 'lofi');
+    }
+
+    const handleSignOut = () => {
+        logOut()
+        .then(result => toast.success('Successfully signed out'))
     }
 
     const navLinks = <>
@@ -38,9 +47,12 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <div className="navbar-end text-3xl duration-300" onClick={() => setDark(!dark)}>
+                <div className="navbar-end duration-300">
                     {
-                        dark ? <CiLight /> : <CiDark /> 
+                        user ? <> <button onClick={handleSignOut} className="btn mx-2">SignOut</button><img className="h-10 mr-2 rounded-full" src={user.photoURL} alt="" /><p>{user.displayName}</p></> : ''
+                    }
+                    {
+                        dark ? <CiLight onClick={() => setDark(!dark)} className="ml-2 text-3xl" /> : <CiDark className="ml-2 text-3xl" onClick={() => setDark(!dark)} />
                     }
                 </div>
             </div>

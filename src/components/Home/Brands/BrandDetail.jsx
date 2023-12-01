@@ -4,7 +4,9 @@ import toast from "react-hot-toast";
 
 const BrandDetail = () => {
     const data = useLoaderData();
-    const { name, brand, category, price, rating, description, photo } = data;
+    const { name, brand, price, rating, description, photo } = data;
+
+    const newData = {name, brand, price, rating, description, photo};
 
     const handleAddToCart = () => {
         fetch('http://localhost:5000/cartProducts', {
@@ -12,7 +14,7 @@ const BrandDetail = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(newData)
         })
         .then(res => res.json())
         .then(data => {
@@ -24,8 +26,8 @@ const BrandDetail = () => {
     }
     return (
         <div>
-            <div className="card lg:card-side bg-base-100 shadow-xl">
-                <figure><img src={photo} alt="" /></figure>
+            <div className="card lg:card-side bg-base-100 mt-10 shadow-xl">
+                <figure><img className='w-1/2' src={photo} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <h2 className="text-xl">${price}</h2>

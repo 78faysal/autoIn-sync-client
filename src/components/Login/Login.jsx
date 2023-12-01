@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    // console.log(location);
 
     const {signIn, googleSignIn} = useContext(AuthContext);
 
@@ -13,17 +16,13 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const user = {email, password}
 
-        // if(password.length < 6){
-        //     toast.error('Password Should atleast 6 charecters')
-        // }
-
-        // signIn user 
+        
         signIn(email, password)
         .then(result => {
             if(result.user){
                 toast.success('Logged In Successfully')
+                navigate(location?.state ? location.state : '/')
             }
         })
         .catch(err => {
@@ -38,6 +37,7 @@ const Login = () => {
         googleSignIn()
         .then(result => {
             console.log(result.user);
+            navigate(location?.state ? location.state : '/')
         })
         .catch(err => {
             console.log(err.message);

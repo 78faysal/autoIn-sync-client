@@ -1,6 +1,12 @@
 import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
-const AddProduct = () => {
+const UpdateCart = () => {
+    const loadedData = useLoaderData();
+
+    const { _id, name, brand, category, price, rating, description, photo } = loadedData;
+
+    console.log(loadedData);
 
     const handleFormSubmit = e => {
         e.preventDefault();
@@ -15,22 +21,22 @@ const AddProduct = () => {
         const description = form.description.value;
         const photo = form.photo.value;
 
-        const data = {name, brand, category, price, rating, description, photo};
+        const data = { name, brand, category, price, rating, description, photo };
 
-        fetch('http://localhost:5000/products', {
-            method: 'POST',
+        fetch(`http://localhost:5000/cartProducts/${_id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.insertedId){
-                toast.success('Item added')
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    toast.success('Updated Successfully')
+                }
+            })
     }
     return (
         <div>
@@ -47,13 +53,13 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" name="name" placeholder="Name" className="input input-bordered" required />
+                                    <input type="text" name="name" defaultValue={name} placeholder="Name" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Brand Name</span>
                                     </label>
-                                    <input type="text" name="brand" placeholder="Brand Name" className="input input-bordered" required />
+                                    <input type="text" name="brand" defaultValue={brand} placeholder="Brand Name" className="input input-bordered" required />
                                 </div>
                             </div>
                             {/* row 2 */}
@@ -62,13 +68,13 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Category</span>
                                     </label>
-                                    <input type="text" name="category" placeholder="Product Category" className="input input-bordered" required />
+                                    <input type="text" name="category" defaultValue={category} placeholder="Product Category" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Price</span>
                                     </label>
-                                    <input type="text" name="price" placeholder="Price" className="input input-bordered" required />
+                                    <input type="text" name="price" defaultValue={price} placeholder="Price" className="input input-bordered" required />
                                 </div>
                             </div>
                             {/* row 3 */}
@@ -77,13 +83,13 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Rating</span>
                                     </label>
-                                    <input type="text" name="rating" placeholder="Rating" className="input input-bordered" required />
+                                    <input type="text" name="rating" defaultValue={rating} placeholder="Rating" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Short description</span>
                                     </label>
-                                    <input type="text" name="description" placeholder="Description" className="input input-bordered" required />
+                                    <input type="text" name="description" defaultValue={description} placeholder="Description" className="input input-bordered" required />
                                 </div>
                             </div>
                             {/* row 1 */}
@@ -92,11 +98,11 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" name="photo" placeholder="URL" className="input input-bordered" required />
+                                    <input type="text" name="photo" defaultValue={photo} placeholder="URL" className="input input-bordered" required />
                                 </div>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Add Product</button>
+                                <button className="btn btn-primary">Update Cart</button>
                             </div>
                         </form>
                     </div>
@@ -106,4 +112,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default UpdateCart;
