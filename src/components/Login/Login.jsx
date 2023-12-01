@@ -1,0 +1,59 @@
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+
+const Login = () => {
+
+    const handleFormSubmit = e => {
+        e.preventDefault();
+
+        // const form = e.target;
+        // const email = form.email.value;
+        // const password = form.password.value;
+        // const user = {email, password}
+
+        // if(password.length < 6){
+        //     toast.error('Password Should atleast 6 charecters')
+        // }
+
+        // console.log(user);
+    }
+    return (
+        <div>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex-col">
+                    <div className="text-center">
+                        <h1 className="text-3xl font-bold">Login now!</h1>
+                    </div>
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <form className="card-body" onSubmit={handleFormSubmit}>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" name="email" placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control mt-6">
+                                <button className="btn btn-primary">Login</button>
+                            </div>
+                            <div className="my-2 border-b-2 pb-3">
+                                <p>Need to create Account? <Link to='/register' className="text-gray-700 ml-2">SignUp</Link></p>
+                            </div>
+                            <div>
+                                <button className="btn  w-full">Continue with Google</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
