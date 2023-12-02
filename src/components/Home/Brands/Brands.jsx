@@ -10,7 +10,7 @@ const Brands = () => {
             .then(data => setBrands(data))
     }, [])
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen px-5 md:px-10">
             <h2 className="text-2xl border-b-2 my-10 w-60 p-3 text-center font-semibold mx-auto">Meet our Brands</h2>
 
 

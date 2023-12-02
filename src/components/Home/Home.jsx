@@ -5,6 +5,7 @@ const Home = () => {
     return (
         <div>
             <Banner />
+            <div className="min-h-screen"></div>
             <Brands />
         </div>
     );

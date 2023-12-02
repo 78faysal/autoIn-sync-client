@@ -18,7 +18,7 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         logOut()
-        .then(result => toast.success('Successfully signed out'))
+        .then(() => toast.success('Successfully signed out'))
     }
 
     const navLinks = <>
@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 md:px-10">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +49,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end duration-300">
                     {
-                        user ? <> <button onClick={handleSignOut} className="btn mx-2">SignOut</button><img className="h-10 mr-2 rounded-full" src={user.photoURL} alt="" /><p>{user.displayName}</p></> : ''
+                        user ? <> <button onClick={handleSignOut} className="btn mx-2">SignOut</button><img className="h-10 mr-2 rounded-full" src={user.photoURL} alt="" /><p className="max-sm:hidden">{user.displayName}</p></> : ''
                     }
                     {
                         dark ? <CiLight onClick={() => setDark(!dark)} className="ml-2 text-3xl" /> : <CiDark className="ml-2 text-3xl" onClick={() => setDark(!dark)} />
