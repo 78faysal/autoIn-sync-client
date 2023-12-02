@@ -17,7 +17,7 @@ const AddProduct = () => {
 
         const data = {name, brand, category, price, rating, description, photo};
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://auto-in-sync-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

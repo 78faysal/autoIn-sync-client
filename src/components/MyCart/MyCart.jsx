@@ -9,7 +9,7 @@ const MyCart = () => {
     const [displayCart, setDisplayCart] = useState(cartDatas)
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/cartProducts/${id}`, {
+        fetch(`https://auto-in-sync-server.vercel.app/cartProducts/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())

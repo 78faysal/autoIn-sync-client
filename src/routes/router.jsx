@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'myCart',
-                loader: () => fetch('http://localhost:5000/cartProducts'),
+                loader: () => fetch('https://auto-in-sync-server.vercel.app/cartProducts'),
                 element: <PrivateRoute><MyCart /></PrivateRoute>
             },
             {
@@ -44,17 +44,17 @@ const router = createBrowserRouter([
             {
                 path: '/brand/:brand',
                 element: <Brand />,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
+                loader: ({ params }) => fetch(`https://auto-in-sync-server.vercel.app/products/${params.brand}`)
             },
             {
                 path: '/brand/productDetail/:id',
                 element: <PrivateRoute><BrandDetail /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+                loader: ({ params }) => fetch(`https://auto-in-sync-server.vercel.app/product/${params.id}`)
             },
             {
                 path: '/updateCart/:id',
                 element: <PrivateRoute><UpdateCart /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/cartProducts/${params.id}`)
+                loader: ({ params }) => fetch(`https://auto-in-sync-server.vercel.app/cartProducts/${params.id}`)
             }
         ]
     },

@@ -23,7 +23,7 @@ const UpdateCart = () => {
 
         const data = { name, brand, category, price, rating, description, photo };
 
-        fetch(`http://localhost:5000/cartProducts/${_id}`, {
+        fetch(`https://auto-in-sync-server.vercel.app/cartProducts/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

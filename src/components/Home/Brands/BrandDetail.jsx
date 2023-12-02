@@ -9,7 +9,7 @@ const BrandDetail = () => {
     const newData = { name, brand, price, rating, description, photo };
 
     const handleAddToCart = () => {
-        fetch('http://localhost:5000/cartProducts', {
+        fetch('https://auto-in-sync-server.vercel.app/cartProducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

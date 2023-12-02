@@ -42,7 +42,7 @@ const Contact = () => {
                 </form>
             </div> */}
 
-            <div className="grid md:grid-cols-2 gap-10 md:px-20 items-center min-h-screen">
+            <div className="grid md:grid-cols-2 gap-10 md:px-20 px-5 items-center min-h-screen">
                 <div className="space-y-3">
                     <h2 className="text-2xl border-b-2 style-text w-40 pb-2 font-semibold">Contact Us</h2>
 
