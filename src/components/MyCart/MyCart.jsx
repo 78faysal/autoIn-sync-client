@@ -23,8 +23,8 @@ const MyCart = () => {
         })
     }
     return (
-        <div className=" px-5 md:px-20">
-            <h2 className="text-2xl border-b-2 my-10 w-40 p-3 text-center font-semibold mx-auto">My Cart</h2>
+        <div className=" px-5 md:px-20 my-10">
+            <h2 className="text-2xl border-b-2 w-40 p-3 text-center font-semibold mx-auto">My Cart</h2>
 
             <div className="grid md:grid-cols-3 gap-10">
                 {
