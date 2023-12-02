@@ -72,7 +72,7 @@ const Brand = () => {
                     brandData.map(data => <div key={data._id}>
                         <div className="card card-compact mx-auto bg-base-100 shadow-xl">
                             <figure><img className="h-60" src={data.photo} alt="Shoes" /></figure>
-                            <div className="card-body">
+                            <div className="card-body p-5">
                                 <h2 className="card-title">{data.name}</h2>
                                 <p>{data.description}</p>
                                 <h2 className="text-xl">${data.price}</h2>
